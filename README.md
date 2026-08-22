@@ -48,3 +48,12 @@ Runs the solution against all test cases (examples first, then the full test sui
 - **MLE** &mdash; memory limit exceeded (>512MB)
 - **RTE** &mdash; runtime error (shows the full stack trace)
 
+### Submitting a solution
+
+```bash
+./submit.sh 1068            # PyPy3 by default
+./submit.sh 1068 cpython3   # To use CPython3 instead
+```
+
+Polls for the judge result and prints per-test verdicts with a link to the result page.
+
