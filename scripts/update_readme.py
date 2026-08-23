@@ -1,12 +1,19 @@
+import json
 import os
 import re
 import urllib.request
 import urllib.parse
 import http.cookiejar
+from collections import defaultdict
+from datetime import datetime, timezone
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_FILE = os.path.join(ROOT_DIR, ".env")
-SVG_FILE = os.path.join(ROOT_DIR, "assets", "progress.svg")
+ASSETS_DIR = os.path.join(ROOT_DIR, "assets")
+SVG_FILE = os.path.join(ASSETS_DIR, "progress.svg")
+TIMELINE_FILE = os.path.join(ASSETS_DIR, "timeline.svg")
+CHECKLIST_FILE = os.path.join(ASSETS_DIR, "checklist.json")
+PROBLEMS_DIR = os.path.join(ROOT_DIR, "problems")
 BASE_URL = "https://cses.fi"
 LOGIN_URL = f"{BASE_URL}/login"
 PROBLEMSET_URL = f"{BASE_URL}/problemset/"
@@ -59,6 +66,7 @@ def login(opener):
 def get_stats(opener):
     html = fetch(opener, PROBLEMSET_URL)
     categories = {}
+    solved_tasks = []
     for chunk in html.split("<h2>")[1:]:
         name = chunk.split("</h2>")[0].strip()
         total = chunk.count('class="task"')
@@ -66,7 +74,15 @@ def get_stats(opener):
             continue
         solved = chunk.count("task-score icon full")
         categories[name] = (solved, total)
-    return categories
+        for m in re.finditer(
+            r'<a href="/problemset/task/(\d+)">([^<]+)</a>.*?'
+            r'class="task-score icon (full|)"',
+            chunk, re.DOTALL,
+        ):
+            task_id, task_name, status = m.group(1), m.group(2), m.group(3)
+            if status == "full":
+                solved_tasks.append((int(task_id), task_name))
+    return categories, solved_tasks
 
 
 def update_svg(stats):
@@ -132,6 +148,154 @@ def update_svg(stats):
         f.write("\n".join(lines) + "\n")
 
 
+def load_checklist():
+    if os.path.isfile(CHECKLIST_FILE):
+        with open(CHECKLIST_FILE) as f:
+            return json.load(f)
+    return []
+
+
+def save_checklist(checklist):
+    os.makedirs(os.path.dirname(CHECKLIST_FILE), exist_ok=True)
+    with open(CHECKLIST_FILE, "w") as f:
+        json.dump(checklist, f, indent=2)
+        f.write("\n")
+
+
+def task_in_repo(task_id):
+    for dirpath, _, filenames in os.walk(PROBLEMS_DIR):
+        for fn in filenames:
+            if fn.endswith(f"_{task_id}.py"):
+                return True
+    return False
+
+
+def sync_checklist(solved_tasks):
+    checklist = load_checklist()
+    existing_ids = {entry["task_id"] for entry in checklist}
+    added = []
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    for task_id, task_name in solved_tasks:
+        if task_id in existing_ids:
+            continue
+        if not task_in_repo(task_id):
+            continue
+        checklist.append({
+            "task_id": task_id,
+            "task_name": task_name,
+            "date_solved": now,
+        })
+        added.append(task_name)
+    checklist.sort(key=lambda e: e["date_solved"])
+    save_checklist(checklist)
+    return added
+
+
+def update_timeline(checklist):
+    if not checklist:
+        return
+
+    daily_counts = defaultdict(int)
+    for entry in checklist:
+        day = entry["date_solved"][:10]
+        daily_counts[day] += 1
+
+    days = sorted(daily_counts.keys())
+    cumulative = []
+    running = 0
+    for day in days:
+        running += daily_counts[day]
+        cumulative.append((day, running))
+
+    padding_left = 70
+    padding_right = 30
+    padding_top = 40
+    padding_bottom = 50
+    chart_width = 500
+    chart_height = 200
+    svg_width = padding_left + chart_width + padding_right
+    svg_height = padding_top + chart_height + padding_bottom
+
+    raw_max = cumulative[-1][1]
+    if raw_max <= 5:
+        y_max = 5
+    elif raw_max <= 10:
+        y_max = 10
+    else:
+        y_max = ((raw_max + 9) // 10) * 10
+    num_days = len(cumulative)
+
+    def x_pos(i):
+        if num_days == 1:
+            return padding_left + chart_width / 2
+        return padding_left + i * chart_width / (num_days - 1)
+
+    def y_pos(count):
+        if y_max == 0:
+            return padding_top + chart_height
+        return padding_top + chart_height - (count / y_max) * chart_height
+
+    lines = []
+    lines.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" height="{svg_height}">')
+    lines.append('  <style>')
+    lines.append('    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 11px; fill: #656d76; }')
+    lines.append('    text.title { font-size: 13px; font-weight: 600; fill: #24292f; }')
+    lines.append('    line.grid { stroke: #e8e8e8; stroke-width: 1; }')
+    lines.append('    line.axis { stroke: #d0d7de; stroke-width: 1; }')
+    lines.append('    @media (prefers-color-scheme: dark) {')
+    lines.append('      text { fill: #8b949e; }')
+    lines.append('      text.title { fill: #e6edf3; }')
+    lines.append('      line.grid { stroke: #21262d; }')
+    lines.append('      line.axis { stroke: #30363d; }')
+    lines.append('    }')
+    lines.append('  </style>')
+
+    lines.append(f'  <text class="title" x="{padding_left}" y="20">Problems Solved Over Time</text>')
+
+    y_ticks = 5
+    for i in range(y_ticks + 1):
+        val = int(y_max * i / y_ticks)
+        y = y_pos(val)
+        lines.append(f'  <line class="grid" x1="{padding_left}" y1="{y}" x2="{padding_left + chart_width}" y2="{y}"/>')
+        lines.append(f'  <text x="{padding_left - 8}" y="{y + 4}" text-anchor="end">{val}</text>')
+
+    lines.append(f'  <line class="axis" x1="{padding_left}" y1="{padding_top}" x2="{padding_left}" y2="{padding_top + chart_height}"/>')
+    lines.append(f'  <line class="axis" x1="{padding_left}" y1="{padding_top + chart_height}" x2="{padding_left + chart_width}" y2="{padding_top + chart_height}"/>')
+
+    if num_days <= 10:
+        label_indices = list(range(num_days))
+    else:
+        step = max(1, num_days // 6)
+        label_indices = list(range(0, num_days, step))
+        if num_days - 1 not in label_indices:
+            label_indices.append(num_days - 1)
+
+    for i in label_indices:
+        x = x_pos(i)
+        label = cumulative[i][0][5:]
+        lines.append(f'  <text x="{x}" y="{padding_top + chart_height + 18}" text-anchor="middle">{label}</text>')
+
+    area_points = [f"{x_pos(0)},{padding_top + chart_height}"]
+    for i, (_, count) in enumerate(cumulative):
+        area_points.append(f"{x_pos(i)},{y_pos(count)}")
+    area_points.append(f"{x_pos(num_days - 1)},{padding_top + chart_height}")
+    lines.append(f'  <polygon points="{" ".join(area_points)}" fill="#4CAF50" opacity="0.15"/>')
+
+    path_points = []
+    for i, (_, count) in enumerate(cumulative):
+        prefix = "M" if i == 0 else "L"
+        path_points.append(f"{prefix}{x_pos(i)},{y_pos(count)}")
+    lines.append(f'  <path d="{" ".join(path_points)}" fill="none" stroke="#4CAF50" stroke-width="2"/>')
+
+    for i, (_, count) in enumerate(cumulative):
+        lines.append(f'  <circle cx="{x_pos(i)}" cy="{y_pos(count)}" r="3" fill="#4CAF50"/>')
+
+    lines.append('</svg>')
+
+    with open(TIMELINE_FILE, "w") as f:
+        f.write("\n".join(lines) + "\n")
+
+
 def main():
     cj = http.cookiejar.CookieJar()
     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
@@ -141,7 +305,7 @@ def main():
         exit(1)
 
     print("Fetching solve stats...")
-    stats = get_stats(opener)
+    stats, solved_tasks = get_stats(opener)
 
     for name, (solved, total) in stats.items():
         print(f"  {name}: {solved}/{total}")
@@ -152,6 +316,16 @@ def main():
 
     update_svg(stats)
     print("\nassets/progress.svg updated.")
+
+    added = sync_checklist(solved_tasks)
+    if added:
+        print(f"\nChecklist: added {len(added)} task(s): {', '.join(added)}")
+    else:
+        print("\nChecklist: up to date.")
+
+    checklist = load_checklist()
+    update_timeline(checklist)
+    print("assets/timeline.svg updated.")
 
 
 if __name__ == "__main__":

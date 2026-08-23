@@ -6,6 +6,8 @@ CSES profile: [frederickpek](https://cses.fi/user/457384)
 
 <img src="assets/progress.svg" alt="Progress" />
 
+<img src="assets/timeline.svg" alt="Timeline" />
+
 ---
 
 ## Setup
