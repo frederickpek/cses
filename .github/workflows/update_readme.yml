@@ -30,4 +30,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet assets/progress.svg || (git add assets/progress.svg && git commit -m "Update solve stats" && git push)
+          git add assets/progress.svg assets/checklist.json assets/timeline.svg
+          git diff --cached --quiet || (git commit -m "Update solve stats" && git push)
