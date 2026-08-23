@@ -5,7 +5,7 @@ import urllib.request
 import urllib.parse
 import http.cookiejar
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_FILE = os.path.join(ROOT_DIR, ".env")
@@ -195,9 +195,11 @@ def update_timeline(checklist):
     if not checklist:
         return
 
+    sgt = timezone(timedelta(hours=8))
     daily_counts = defaultdict(int)
     for entry in checklist:
-        day = entry["date_solved"][:10]
+        utc_dt = datetime.strptime(entry["date_solved"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        day = utc_dt.astimezone(sgt).strftime("%Y-%m-%d")
         daily_counts[day] += 1
 
     days = sorted(daily_counts.keys())
