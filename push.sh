@@ -20,7 +20,7 @@ fi
 
 BASENAME=$(basename "$FILE" .py)
 NAME_PART="${BASENAME%_$TASK_ID}"
-TITLE=$(echo "$NAME_PART" | sed 's/_/ /g' | sed 's/\b\(.\)/\u\1/g')
+TITLE=$(echo "$NAME_PART" | sed 's/_/ /g' | sed 's/\b\(.\)/\u\1/g' | sed 's/ Ii\+$/\U&/')
 
 git add "$FILE"
 git commit -m "Solve $TITLE ($TASK_ID)"
