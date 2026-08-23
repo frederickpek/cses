@@ -53,5 +53,10 @@
     "task_id": 1618,
     "task_name": "Trailing Zeros",
     "date_solved": "2026-08-23T07:30:50Z"
+  },
+  {
+    "task_id": 1754,
+    "task_name": "Coin Piles",
+    "date_solved": "2026-08-23T08:42:09Z"
   }
 ]
