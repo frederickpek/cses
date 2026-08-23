@@ -36,11 +36,11 @@
   <rect x="210" y="95" width="0" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="107">0 / 23</text>
 
-  <!-- Graph Algorithms: 1/36 -->
+  <!-- Graph Algorithms: 2/36 -->
   <text x="10" y="137">Graph Algorithms</text>
   <rect x="210" y="125" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="125" width="8" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="137">1 / 36</text>
+  <rect x="210" y="125" width="16" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="137">2 / 36</text>
 
   <!-- Range Queries: 0/25 -->
   <text x="10" y="167">Range Queries</text>
@@ -126,10 +126,10 @@
   <rect x="210" y="545" width="0" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="557">0 / 30</text>
 
-  <!-- Total: 18/400 -->
+  <!-- Total: 19/400 -->
   <line x1="10" y1="575" x2="570" y2="575" stroke-width="1"/>
   <text x="10" y="597" font-weight="bold">Total</text>
   <rect x="210" y="585" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="585" width="13" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="597" font-weight="bold">18 / 400</text>
+  <rect x="210" y="585" width="14" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="597" font-weight="bold">19 / 400</text>
 </svg>
