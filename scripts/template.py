@@ -2,10 +2,12 @@ import sys
 input = sys.stdin.readline
 
 
-def main():
+def solve():
     n = int(input())
     A = list(map(int, input().split()))
 
 
 if __name__ == "__main__":
-    main()
+    t = int(input())
+    for _ in range(t):
+        solve()
