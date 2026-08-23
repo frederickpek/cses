@@ -1,8 +1,10 @@
-I = lambda: map(int, input().split())
+import sys
+input = sys.stdin.readline
 
 
 def main():
-    pass
+    n = int(input())
+    A = list(map(int, input().split()))
 
 
 if __name__ == "__main__":
