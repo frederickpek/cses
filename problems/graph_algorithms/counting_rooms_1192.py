@@ -3,6 +3,12 @@ from collections import deque
 d4i = [1, -1, 0, 0]
 d4j = [0, 0, 1, -1]
 
+"""
+    had to make to following for it to not TLE
+    1. prefer stack over recurssive dfs
+    2. use idx: i * m + j and vis array instead of set of (i, j)
+"""
+
 
 def solve():
     n, m = map(int, input().split())
