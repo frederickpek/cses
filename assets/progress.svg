@@ -18,11 +18,11 @@
   <text class="header count" x="570" y="16">Solved</text>
   <line x1="10" y1="26" x2="570" y2="26" stroke-width="1"/>
 
-  <!-- Introductory Problems: 10/24 -->
+  <!-- Introductory Problems: 11/24 -->
   <text x="10" y="47">Introductory Problems</text>
   <rect x="210" y="35" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="35" width="125" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="47">10 / 24</text>
+  <rect x="210" y="35" width="137" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="47">11 / 24</text>
 
   <!-- Sorting and Searching: 1/35 -->
   <text x="10" y="77">Sorting and Searching</text>
@@ -126,10 +126,10 @@
   <rect x="210" y="545" width="0" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="557">0 / 30</text>
 
-  <!-- Total: 11/400 -->
+  <!-- Total: 12/400 -->
   <line x1="10" y1="575" x2="570" y2="575" stroke-width="1"/>
   <text x="10" y="597" font-weight="bold">Total</text>
   <rect x="210" y="585" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="585" width="8" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="597" font-weight="bold">11 / 400</text>
+  <rect x="210" y="585" width="9" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="597" font-weight="bold">12 / 400</text>
 </svg>
