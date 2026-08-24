@@ -157,6 +157,8 @@ HEADER
     rm -rf "$BITS_DIR"
     RUN_CMD="$CPP_BIN"
     trap "rm -f '$CPP_BIN'" EXIT
+    # Warmup: macOS Gatekeeper checks unsigned binaries on first run
+    (echo "" | "$CPP_BIN" >/dev/null 2>&1 || true) 2>/dev/null
 else
     RUN_CMD="python3 $PROBLEM_FILE"
 fi
