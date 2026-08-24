@@ -48,11 +48,11 @@
   <rect x="210" y="155" width="0" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="167">0 / 25</text>
 
-  <!-- Tree Algorithms: 0/16 -->
+  <!-- Tree Algorithms: 1/16 -->
   <text x="10" y="197">Tree Algorithms</text>
   <rect x="210" y="185" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="185" width="0" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="197">0 / 16</text>
+  <rect x="210" y="185" width="18" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="197">1 / 16</text>
 
   <!-- Mathematics: 0/37 -->
   <text x="10" y="227">Mathematics</text>
@@ -126,10 +126,10 @@
   <rect x="210" y="545" width="0" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="557">0 / 30</text>
 
-  <!-- Total: 26/400 -->
+  <!-- Total: 27/400 -->
   <line x1="10" y1="575" x2="570" y2="575" stroke-width="1"/>
   <text x="10" y="597" font-weight="bold">Total</text>
   <rect x="210" y="585" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="585" width="19" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="597" font-weight="bold">26 / 400</text>
+  <rect x="210" y="585" width="20" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="597" font-weight="bold">27 / 400</text>
 </svg>

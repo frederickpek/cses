@@ -29,9 +29,9 @@
   <text x="70.0" y="258" text-anchor="middle">08-22</text>
   <text x="320.0" y="258" text-anchor="middle">08-23</text>
   <text x="570.0" y="258" text-anchor="middle">08-24</text>
-  <polygon points="70.0,240 70.0,206.66666666666669 320.0,120.0 570.0,66.66666666666666 570.0,240" fill="#4CAF50" opacity="0.15"/>
-  <path d="M70.0,206.66666666666669 L320.0,120.0 L570.0,66.66666666666666" fill="none" stroke="#4CAF50" stroke-width="2"/>
+  <polygon points="70.0,240 70.0,206.66666666666669 320.0,120.0 570.0,60.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
+  <path d="M70.0,206.66666666666669 L320.0,120.0 L570.0,60.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
   <circle cx="70.0" cy="206.66666666666669" r="3" fill="#4CAF50"/>
   <circle cx="320.0" cy="120.0" r="3" fill="#4CAF50"/>
-  <circle cx="570.0" cy="66.66666666666666" r="3" fill="#4CAF50"/>
+  <circle cx="570.0" cy="60.0" r="3" fill="#4CAF50"/>
 </svg>
