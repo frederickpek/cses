@@ -21,7 +21,7 @@ RED = "\033[0;31m"
 YELLOW = "\033[0;33m"
 NC = "\033[0m"
 
-VALID_OPTIONS = {"pypy3", "cpython3"}
+VALID_OPTIONS = {"pypy3", "cpython3", "--cpp"}
 
 
 def load_env():
@@ -75,11 +75,12 @@ def login(opener):
     return "Log out" in resp
 
 
-def find_solution(task_id):
+def find_solution(task_id, cpp=False):
+    ext = ".cpp" if cpp else ".py"
     problems_dir = os.path.join(ROOT_DIR, "problems")
     for root, _, files in os.walk(problems_dir):
         for f in files:
-            if f.endswith(f"_{task_id}.py"):
+            if f.endswith(f"_{task_id}{ext}"):
                 return os.path.join(root, f)
     return None
 
@@ -111,7 +112,7 @@ def submit(opener, task_id, solution_path, option):
 
     add_field("csrf_token", csrf.group(1))
     add_field("task", task_id)
-    add_field("lang", "Python3")
+    add_field("lang", "C++" if option.startswith("C++") else "Python3")
     add_field("option", option)
     add_field("type", "course")
     add_field("target", "problemset")
@@ -186,19 +187,26 @@ def main():
     option = sys.argv[2].lower() if len(sys.argv) == 3 else "pypy3"
 
     if option not in VALID_OPTIONS:
-        print(f"Error: Invalid option '{option}'. Use 'cpython3' or 'pypy3'")
+        print(f"Error: Invalid option '{option}'. Use 'cpython3', 'pypy3', or '--cpp'")
         sys.exit(1)
 
-    option_display = "PyPy3" if option == "pypy3" else "CPython3"
+    use_cpp = option == "--cpp"
 
-    solution_path = find_solution(task_id)
+    solution_path = find_solution(task_id, cpp=use_cpp)
     if not solution_path:
         print(f"Error: No solution file found for task {task_id}")
         sys.exit(1)
 
     rel_path = os.path.relpath(solution_path, ROOT_DIR)
+    if use_cpp:
+        lang_display = "C++"
+        option_display = "C++20"
+    else:
+        lang_display = f"Python3 ({'PyPy3' if option == 'pypy3' else 'CPython3'})"
+        option_display = "PyPy3" if option == "pypy3" else "CPython3"
+
     print(f"Solution: {rel_path}")
-    print(f"Language: Python3 ({option_display})")
+    print(f"Language: {lang_display}")
     print()
 
     opener = build_opener()

@@ -57,16 +57,19 @@ fi
 
 RUN_ALL=0
 FILTER=""
+USE_CPP=0
 
 usage() {
     echo "Usage: ./test.sh <task_id> [options]"
     echo "Example: ./test.sh 1068"
     echo "         ./test.sh 1068 -a"
     echo "         ./test.sh 1068 -i ex1"
+    echo "         ./test.sh 1068 --cpp"
     echo ""
     echo "Options:"
     echo "  -a, --all          Run all tests (no early exit, compact output)"
     echo "  -i, --input NAME   Run only the specified test (e.g. -i 1, -i ex1)"
+    echo "  --cpp              Use the C++ solution instead of Python"
     exit 1
 }
 
@@ -88,6 +91,10 @@ while [ $# -gt 0 ]; do
             FILTER="$2"
             shift 2
             ;;
+        --cpp)
+            USE_CPP=1
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
             usage
@@ -102,11 +109,56 @@ if [ ! -d "$TESTS_DIR" ]; then
     exit 1
 fi
 
-PROBLEM_FILE=$(find "$SCRIPT_DIR/problems" -name "*_${TASK_ID}.py" 2>/dev/null | head -1)
+if [ "$USE_CPP" -eq 1 ]; then
+    PROBLEM_FILE=$(find "$SCRIPT_DIR/problems" -name "*_${TASK_ID}.cpp" 2>/dev/null | head -1)
+else
+    PROBLEM_FILE=$(find "$SCRIPT_DIR/problems" -name "*_${TASK_ID}.py" 2>/dev/null | head -1)
+fi
 
 if [ -z "$PROBLEM_FILE" ]; then
     echo "Error: No solution file found for task $TASK_ID"
     exit 1
+fi
+
+if [ "$USE_CPP" -eq 1 ]; then
+    CPP_BIN=$(mktemp)
+    CPP_FLAGS="-O2 -std=c++20"
+    # macOS clang lacks bits/stdc++.h; add a shim include path
+    BITS_DIR=$(mktemp -d)
+    mkdir -p "$BITS_DIR/bits"
+    cat > "$BITS_DIR/bits/stdc++.h" <<'HEADER'
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <climits>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <deque>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <tuple>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+HEADER
+    g++ $CPP_FLAGS -I"$BITS_DIR" -o "$CPP_BIN" "$PROBLEM_FILE" || { rm -rf "$BITS_DIR"; echo "Error: Compilation failed"; exit 1; }
+    rm -rf "$BITS_DIR"
+    RUN_CMD="$CPP_BIN"
+    trap "rm -f '$CPP_BIN'" EXIT
+else
+    RUN_CMD="python3 $PROBLEM_FILE"
 fi
 
 # Collect test names in order: examples first, then numbered
@@ -174,13 +226,13 @@ run_test() {
     if [ "$USE_GNU_TIME" -eq 1 ]; then
         # GNU time: -o writes time output to file, stderr stays python's
         timeout_cmd $GNU_TIME_CMD -v -o "$tmp_time" \
-            python3 "$PROBLEM_FILE" < "$in_file" > "$tmp_out" 2> "$tmp_err" \
+            $RUN_CMD < "$in_file" > "$tmp_out" 2> "$tmp_err" \
             || exit_code=$?
     else
         # macOS: wrap python in sh -c so its stderr is captured separately,
         # then time's stderr (the stats) is captured by the outer redirect
         { timeout_cmd /usr/bin/time -l \
-            sh -c "python3 \"$PROBLEM_FILE\" < \"$in_file\" > \"$tmp_out\" 2> \"$tmp_err\"" ; } \
+            sh -c "$RUN_CMD < \"$in_file\" > \"$tmp_out\" 2> \"$tmp_err\"" ; } \
             2> "$tmp_time" || exit_code=$?
     fi
 

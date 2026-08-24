@@ -9,7 +9,8 @@ import urllib.parse
 import http.cookiejar
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE = os.path.join(ROOT_DIR, "scripts", "template.py")
+TEMPLATE_PY = os.path.join(ROOT_DIR, "scripts", "template.py")
+TEMPLATE_CPP = os.path.join(ROOT_DIR, "scripts", "template.cpp")
 ENV_FILE = os.path.join(ROOT_DIR, ".env")
 BASE_URL = "https://cses.fi"
 TASK_URL = f"{BASE_URL}/problemset/task/{{}}"
@@ -145,14 +146,18 @@ def extract_examples(html):
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python3 load.py <task_id>")
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        print("Usage: python3 load.py <task_id> [--cpp]")
         sys.exit(1)
 
     task_id = sys.argv[1]
+    use_cpp = len(sys.argv) == 3 and sys.argv[2] == "--cpp"
 
-    if not os.path.isfile(TEMPLATE):
-        print(f"Error: template.py not found at {TEMPLATE}")
+    template = TEMPLATE_CPP if use_cpp else TEMPLATE_PY
+    ext = ".cpp" if use_cpp else ".py"
+
+    if not os.path.isfile(template):
+        print(f"Error: template not found at {template}")
         sys.exit(1)
 
     opener = build_opener()
@@ -176,11 +181,11 @@ def main():
     category_dir = os.path.join(ROOT_DIR, "problems", category_slug)
     os.makedirs(category_dir, exist_ok=True)
 
-    problem_file = os.path.join(category_dir, f"{problem_slug}.py")
+    problem_file = os.path.join(category_dir, f"{problem_slug}{ext}")
     if os.path.isfile(problem_file):
         print(f"File already exists: {problem_file}")
     else:
-        shutil.copy(TEMPLATE, problem_file)
+        shutil.copy(template, problem_file)
         print(f"Created: {problem_file}")
 
     tests_dir = os.path.join(ROOT_DIR, "tests", task_id)

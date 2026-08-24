@@ -7,7 +7,7 @@ def solve():
     A = list(map(int, input().split()))
     n, m = map(int, input().split())
     for _ in range(n):
-        ...
+        u, v = map(lambda x: int(x) - 1, input().split())
 
 
 if __name__ == "__main__":

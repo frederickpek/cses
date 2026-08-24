@@ -165,7 +165,7 @@ def save_checklist(checklist):
 def task_in_repo(task_id):
     for dirpath, _, filenames in os.walk(PROBLEMS_DIR):
         for fn in filenames:
-            if fn.endswith(f"_{task_id}.py"):
+            if fn.endswith(f"_{task_id}.py") or fn.endswith(f"_{task_id}.cpp"):
                 return True
     return False
 
