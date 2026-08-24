@@ -1,6 +1,6 @@
 # CSES Solutions
 
-My solutions to the [CSES Problem Set](https://cses.fi/problemset/) in Python. Progress is tracked automatically via GitHub Actions.
+My solutions to the [CSES Problem Set](https://cses.fi/problemset/) in Python and C++. Progress is tracked automatically via GitHub Actions.
 
 CSES profile: [frederickpek](https://cses.fi/user/457384)
 
@@ -29,20 +29,25 @@ To enable automatic README updates via GitHub Actions, add `CSES_USERNAME` and `
 Find the task ID from the problem URL (e.g. `https://cses.fi/problemset/task/1068` &rarr; `1068`), then run:
 
 ```bash
-./load.sh 1068
+./load.sh 1068          # Python (default)
+./load.sh 1068 --cpp    # C++
 ```
 
 This will:
-- Create the solution file at `problems/<category>/<problem_name>_<task_id>.py` with the template
+- Create the solution file at `problems/<category>/<problem_name>_<task_id>.py` (or `.cpp`) with the template
 - Download all test cases to `tests/<task_id>/`
 
 ### Testing a solution
 
 ```bash
-./test.sh 1068
+./test.sh 1068              # Run all tests (stops on first failure)
+./test.sh 1068 -a           # Run all tests (no early exit, compact output)
+./test.sh 1068 -i ex1       # Run a specific test case
+./test.sh 1068 --cpp        # Test the C++ solution
+./test.sh 1068 --cpp -a     # Flags can be combined
 ```
 
-Runs the solution against all test cases (examples first, then the full test suite). Each test is run with a 1s time limit and 512MB memory limit, matching CSES judge constraints. Stops on the first failure and reports the verdict:
+Runs the solution against all test cases (examples first, then the full test suite). Each test is run with a 1s time limit and 512MB memory limit, matching CSES judge constraints. By default, stops on the first failure and reports the verdict:
 
 - **PASS** &mdash; correct output
 - **WA** &mdash; wrong answer (shows input, expected, and actual output)
@@ -54,7 +59,8 @@ Runs the solution against all test cases (examples first, then the full test sui
 
 ```bash
 ./submit.sh 1068            # PyPy3 by default
-./submit.sh 1068 cpython3   # To use CPython3 instead
+./submit.sh 1068 cpython3   # CPython3
+./submit.sh 1068 --cpp      # C++ (C++20)
 ```
 
 Polls for the judge result and prints per-test verdicts with a link to the result page.

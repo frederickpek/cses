@@ -20,6 +20,15 @@ for _ in range(m):
     u, v, w = map(int, input().split())
     G[u - 1].append((v - 1, w))
 
+oob = lambda i, j: i < 0 or i > n - 1 or j < 0 or j > m - 1
+idx = lambda i, j: i * m + j
+ij = lambda idx: (idx // m, idx % m)
+
+d4i = [0, 0, 1, -1]
+d4j = [1, -1, 0, 0]
+d8i = [-1, -1, 0, 1, 1, 1, 0, -1]
+d8j = [0, 1, 1, 1, 0, -1, -1, -1]
+
 def main():
     q = deque()
     q.appendleft(1)
