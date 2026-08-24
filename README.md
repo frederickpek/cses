@@ -44,14 +44,15 @@ This will:
 ./test.sh 1068 -a           # Run all tests (no early exit, compact output)
 ./test.sh 1068 -i ex1       # Run a specific test case
 ./test.sh 1068 --cpp        # Test the C++ solution
+./test.sh 1068 --pypy       # Test with PyPy3 instead of CPython
 ./test.sh 1068 --cpp -a     # Flags can be combined
 ```
 
-Runs the solution against all test cases (examples first, then the full test suite). Each test is run with a 1s time limit and 512MB memory limit, matching CSES judge constraints. By default, stops on the first failure and reports the verdict:
+Runs the solution against all test cases (examples first, then the full test suite). Each test is run with a 5s time limit and 512MB memory limit. By default, stops on the first failure and reports the verdict:
 
 - **PASS** &mdash; correct output
 - **WA** &mdash; wrong answer (shows input, expected, and actual output)
-- **TLE** &mdash; time limit exceeded (>1s)
+- **TLE** &mdash; time limit exceeded (>5s)
 - **MLE** &mdash; memory limit exceeded (>512MB)
 - **RTE** &mdash; runtime error (shows the full stack trace)
 
