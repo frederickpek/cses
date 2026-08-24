@@ -76,6 +76,7 @@ fi
 RUN_ALL=0
 FILTER=""
 USE_CPP=0
+USE_PYPY=0
 
 usage() {
     echo "Usage: ./test.sh <task_id> [options]"
@@ -83,11 +84,13 @@ usage() {
     echo "         ./test.sh 1068 -a"
     echo "         ./test.sh 1068 -i ex1"
     echo "         ./test.sh 1068 --cpp"
+    echo "         ./test.sh 1068 --pypy"
     echo ""
     echo "Options:"
     echo "  -a, --all          Run all tests (no early exit, compact output)"
     echo "  -i, --input NAME   Run only the specified test (e.g. -i 1, -i ex1)"
     echo "  --cpp              Use the C++ solution instead of Python"
+    echo "  --pypy             Use PyPy3 instead of CPython"
     exit 1
 }
 
@@ -111,6 +114,10 @@ while [ $# -gt 0 ]; do
             ;;
         --cpp)
             USE_CPP=1
+            shift
+            ;;
+        --pypy)
+            USE_PYPY=1
             shift
             ;;
         *)
@@ -177,6 +184,8 @@ HEADER
     trap "rm -f '$CPP_BIN'" EXIT
     # Warmup: macOS Gatekeeper checks unsigned binaries on first run
     (echo "" | "$CPP_BIN" >/dev/null 2>&1 || true) 2>/dev/null
+elif [ "$USE_PYPY" -eq 1 ]; then
+    RUN_CMD="pypy3 $PROBLEM_FILE"
 else
     RUN_CMD="python3 $PROBLEM_FILE"
 fi
