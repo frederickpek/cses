@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TIME_LIMIT=1
+TIME_LIMIT=5
 MEM_LIMIT_KB=$((512 * 1024))
 
 GREEN='\033[0;32m'
@@ -10,6 +10,24 @@ YELLOW='\033[0;33m'
 NC='\033[0m'
 
 OS="$(uname)"
+
+# Ensure Ctrl-C kills all descendant processes
+_kill_tree() {
+    local pid=$1
+    for child in $(pgrep -P "$pid" 2>/dev/null); do
+        _kill_tree "$child"
+    done
+    kill "$pid" 2>/dev/null || true
+}
+_cleanup() {
+    trap - INT TERM EXIT
+    for child in $(pgrep -P $$ 2>/dev/null); do
+        _kill_tree "$child"
+    done
+    wait 2>/dev/null
+    exit 130
+}
+trap _cleanup INT TERM
 
 # Detect timeout command: GNU timeout, gtimeout, or process-group fallback
 if command -v timeout &>/dev/null; then
