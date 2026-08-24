@@ -183,7 +183,9 @@ HEADER
     RUN_CMD="$CPP_BIN"
     trap "rm -f '$CPP_BIN'" EXIT
     # Warmup: macOS Gatekeeper checks unsigned binaries on first run
-    (echo "" | "$CPP_BIN" >/dev/null 2>&1 || true) 2>/dev/null
+    if [ "$OS" = "Darwin" ]; then
+        ("$CPP_BIN" </dev/null >/dev/null 2>&1 & sleep 0.1; kill $! 2>/dev/null; wait $! 2>/dev/null) || true
+    fi
 elif [ "$USE_PYPY" -eq 1 ]; then
     RUN_CMD="pypy3 $PROBLEM_FILE"
 else
