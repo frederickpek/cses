@@ -30,11 +30,11 @@
   <rect x="210" y="65" width="8" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="77">1 / 35</text>
 
-  <!-- Dynamic Programming: 0/23 -->
+  <!-- Dynamic Programming: 2/23 -->
   <text x="10" y="107">Dynamic Programming</text>
   <rect x="210" y="95" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="95" width="0" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="107">0 / 23</text>
+  <rect x="210" y="95" width="26" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="107">2 / 23</text>
 
   <!-- Graph Algorithms: 9/36 -->
   <text x="10" y="137">Graph Algorithms</text>
@@ -126,10 +126,10 @@
   <rect x="210" y="545" width="0" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="557">0 / 30</text>
 
-  <!-- Total: 27/400 -->
+  <!-- Total: 29/400 -->
   <line x1="10" y1="575" x2="570" y2="575" stroke-width="1"/>
   <text x="10" y="597" font-weight="bold">Total</text>
   <rect x="210" y="585" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="585" width="20" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="597" font-weight="bold">27 / 400</text>
+  <rect x="210" y="585" width="21" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="597" font-weight="bold">29 / 400</text>
 </svg>

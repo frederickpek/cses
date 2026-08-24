@@ -133,5 +133,15 @@
     "task_id": 1674,
     "task_name": "Subordinates",
     "date_solved": "2026-08-24T10:42:05Z"
+  },
+  {
+    "task_id": 1633,
+    "task_name": "Dice Combinations",
+    "date_solved": "2026-08-24T14:31:04Z"
+  },
+  {
+    "task_id": 1634,
+    "task_name": "Minimizing Coins",
+    "date_solved": "2026-08-24T14:31:04Z"
   }
 ]
