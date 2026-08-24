@@ -9,13 +9,91 @@ RED='\033[0;31m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
-if [ $# -ne 1 ]; then
-    echo "Usage: ./test.sh <task_id>"
+OS="$(uname)"
+
+# Detect timeout command: GNU timeout, gtimeout, or process-group fallback
+if command -v timeout &>/dev/null; then
+    timeout_cmd() { timeout "${TIME_LIMIT}s" "$@"; }
+elif command -v gtimeout &>/dev/null; then
+    timeout_cmd() { gtimeout "${TIME_LIMIT}s" "$@"; }
+else
+    # Kill a process and all its descendants
+    kill_tree() {
+        local pid=$1
+        local children
+        children=$(pgrep -P "$pid" 2>/dev/null) || true
+        for child in $children; do
+            kill_tree "$child"
+        done
+        kill "$pid" 2>/dev/null
+    }
+
+    timeout_cmd() {
+        "$@" &
+        local pid=$!
+        (sleep "$TIME_LIMIT" && kill_tree "$pid") &
+        local watchdog=$!
+        wait "$pid" 2>/dev/null
+        local rc=$?
+        kill "$watchdog" 2>/dev/null
+        wait "$watchdog" 2>/dev/null
+        if [ "$rc" -eq 137 ] || [ "$rc" -eq 143 ]; then
+            return 124
+        fi
+        return "$rc"
+    }
+    BASH_TIMEOUT=1
+fi
+
+# Detect GNU time vs macOS time
+USE_GNU_TIME=0
+if command -v gtime &>/dev/null; then
+    GNU_TIME_CMD="gtime"
+    USE_GNU_TIME=1
+elif [ "$OS" != "Darwin" ] && /usr/bin/time -v true &>/dev/null; then
+    GNU_TIME_CMD="/usr/bin/time"
+    USE_GNU_TIME=1
+fi
+
+RUN_ALL=0
+FILTER=""
+
+usage() {
+    echo "Usage: ./test.sh <task_id> [options]"
     echo "Example: ./test.sh 1068"
+    echo "         ./test.sh 1068 -a"
+    echo "         ./test.sh 1068 -i ex1"
+    echo ""
+    echo "Options:"
+    echo "  -a, --all          Run all tests (no early exit, compact output)"
+    echo "  -i, --input NAME   Run only the specified test (e.g. -i 1, -i ex1)"
     exit 1
+}
+
+if [ $# -lt 1 ]; then
+    usage
 fi
 
 TASK_ID="$1"
+shift
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -a|--all)
+            RUN_ALL=1
+            shift
+            ;;
+        -i|--input)
+            [ $# -lt 2 ] && { echo "Error: -i requires a test name"; exit 1; }
+            FILTER="$2"
+            shift 2
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            ;;
+    esac
+done
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TESTS_DIR="$SCRIPT_DIR/tests/$TASK_ID"
 
@@ -39,6 +117,22 @@ done
 for f in $(ls "$TESTS_DIR"/[0-9]*.in 2>/dev/null | sort -V); do
     TESTS+=("$(basename "$f" .in)")
 done
+
+# Filter to a single test if -i was given
+if [ -n "$FILTER" ]; then
+    FOUND=0
+    for t in "${TESTS[@]}"; do
+        if [ "$t" = "$FILTER" ]; then
+            FOUND=1
+            break
+        fi
+    done
+    if [ "$FOUND" -eq 0 ]; then
+        echo "Error: Test '$FILTER' not found in tests/$TASK_ID/"
+        exit 1
+    fi
+    TESTS=("$FILTER")
+fi
 
 TOTAL=${#TESTS[@]}
 
@@ -76,46 +170,81 @@ run_test() {
     trap "rm -f '$tmp_out' '$tmp_time' '$tmp_err'" RETURN
 
     local exit_code=0
-    timeout "${TIME_LIMIT}s" /usr/bin/time -v -o "$tmp_time" \
-        python3 "$PROBLEM_FILE" < "$in_file" > "$tmp_out" 2> "$tmp_err" \
-        || exit_code=$?
 
-    local peak_kb
-    peak_kb=$(grep "Maximum resident set size" "$tmp_time" | grep -oP '\d+$') || peak_kb=0
+    if [ "$USE_GNU_TIME" -eq 1 ]; then
+        # GNU time: -o writes time output to file, stderr stays python's
+        timeout_cmd $GNU_TIME_CMD -v -o "$tmp_time" \
+            python3 "$PROBLEM_FILE" < "$in_file" > "$tmp_out" 2> "$tmp_err" \
+            || exit_code=$?
+    else
+        # macOS: wrap python in sh -c so its stderr is captured separately,
+        # then time's stderr (the stats) is captured by the outer redirect
+        { timeout_cmd /usr/bin/time -l \
+            sh -c "python3 \"$PROBLEM_FILE\" < \"$in_file\" > \"$tmp_out\" 2> \"$tmp_err\"" ; } \
+            2> "$tmp_time" || exit_code=$?
+    fi
+
+    local peak_kb=0
+    if [ "$USE_GNU_TIME" -eq 1 ]; then
+        peak_kb=$(awk -F': ' '/Maximum resident set size/{print $2}' "$tmp_time" 2>/dev/null) || peak_kb=0
+    else
+        # macOS reports bytes
+        local peak_bytes
+        peak_bytes=$(awk '/maximum resident set size/{print $1}' "$tmp_time" 2>/dev/null) || peak_bytes=0
+        peak_kb=$((peak_bytes / 1024))
+    fi
     local mem_mb=$((peak_kb / 1024))
 
     if [ "$exit_code" -eq 124 ]; then
         FAIL=$((FAIL + 1))
         printf "${RED}TLE${NC}   %-${MAX_NAME_LEN}s  (>${TIME_LIMIT}s)\n" "$test_name"
-        report_summary
+        if [ "$RUN_ALL" -eq 0 ]; then
+            report_summary
+            rm -f "$tmp_out" "$tmp_time" "$tmp_err"
+            exit 1
+        fi
         rm -f "$tmp_out" "$tmp_time" "$tmp_err"
-        exit 1
+        return
     fi
 
     if [ "$peak_kb" -gt "$MEM_LIMIT_KB" ]; then
         FAIL=$((FAIL + 1))
-        printf "${RED}MLE${NC}   %-${MAX_NAME_LEN}s  (${used_mb}MB > $((MEM_LIMIT_KB / 1024))MB)\n" "$test_name"
-        report_summary
+        printf "${RED}MLE${NC}   %-${MAX_NAME_LEN}s  (${mem_mb}MB > $((MEM_LIMIT_KB / 1024))MB)\n" "$test_name"
+        if [ "$RUN_ALL" -eq 0 ]; then
+            report_summary
+            rm -f "$tmp_out" "$tmp_time" "$tmp_err"
+            exit 1
+        fi
         rm -f "$tmp_out" "$tmp_time" "$tmp_err"
-        exit 1
+        return
     fi
 
     if [ "$exit_code" -ne 0 ]; then
         FAIL=$((FAIL + 1))
         printf "${RED}RTE${NC}   %-${MAX_NAME_LEN}s  (exit code $exit_code)\n" "$test_name"
-        echo ""
-        cat "$tmp_err"
-        report_summary
+        if [ "$RUN_ALL" -eq 0 ]; then
+            echo ""
+            cat "$tmp_err"
+            report_summary
+            rm -f "$tmp_out" "$tmp_time" "$tmp_err"
+            exit 1
+        fi
         rm -f "$tmp_out" "$tmp_time" "$tmp_err"
-        exit 1
+        return
     fi
 
     expected=$(sed 's/[[:space:]]*$//' "$out_file")
     actual=$(sed 's/[[:space:]]*$//' "$tmp_out")
 
-    local time_raw time_s
-    time_raw=$(grep "wall clock" "$tmp_time" | grep -oP '\d+:\d+\.\d+' | head -1) || time_raw="0:00.00"
-    time_s=$(echo "$time_raw" | awk -F'[:]' '{printf "%.2fs", $1*60+$2}')
+    local time_s
+    if [ "$USE_GNU_TIME" -eq 1 ]; then
+        local time_raw
+        time_raw=$(awk '/wall clock/{match($0,/[0-9]+:[0-9]+\.[0-9]+/); print substr($0,RSTART,RLENGTH)}' "$tmp_time") || time_raw="0:00.00"
+        time_s=$(echo "$time_raw" | awk -F'[:]' '{printf "%.2fs", $1*60+$2}')
+    else
+        # macOS: first line is "0.05 real 0.01 user 0.00 sys"
+        time_s=$(awk '/real/{printf "%.2fs", $1}' "$tmp_time" 2>/dev/null) || time_s="0.00s"
+    fi
 
     if [ "$actual" = "$expected" ]; then
         PASS=$((PASS + 1))
@@ -123,31 +252,33 @@ run_test() {
     else
         FAIL=$((FAIL + 1))
         printf "${RED}WA${NC}    %-${MAX_NAME_LEN}s\n" "$test_name"
-        echo ""
-        echo "Input:"
-        head -20 "$in_file"
-        local lines
-        lines=$(wc -l < "$in_file")
-        if [ "$lines" -gt 20 ]; then
-            echo "... ($lines lines total)"
+        if [ "$RUN_ALL" -eq 0 ]; then
+            echo ""
+            echo "Input:"
+            head -20 "$in_file"
+            local lines
+            lines=$(wc -l < "$in_file")
+            if [ "$lines" -gt 20 ]; then
+                echo "... ($lines lines total)"
+            fi
+            echo ""
+            echo "Expected:"
+            echo "$expected" | head -20
+            lines=$(echo "$expected" | wc -l)
+            if [ "$lines" -gt 20 ]; then
+                echo "... ($lines lines total)"
+            fi
+            echo ""
+            echo "Got:"
+            echo "$actual" | head -20
+            lines=$(echo "$actual" | wc -l)
+            if [ "$lines" -gt 20 ]; then
+                echo "... ($lines lines total)"
+            fi
+            report_summary
+            rm -f "$tmp_out" "$tmp_time" "$tmp_err"
+            exit 1
         fi
-        echo ""
-        echo "Expected:"
-        echo "$expected" | head -20
-        lines=$(echo "$expected" | wc -l)
-        if [ "$lines" -gt 20 ]; then
-            echo "... ($lines lines total)"
-        fi
-        echo ""
-        echo "Got:"
-        echo "$actual" | head -20
-        lines=$(echo "$actual" | wc -l)
-        if [ "$lines" -gt 20 ]; then
-            echo "... ($lines lines total)"
-        fi
-        report_summary
-        rm -f "$tmp_out" "$tmp_time" "$tmp_err"
-        exit 1
     fi
 
     rm -f "$tmp_out" "$tmp_time" "$tmp_err"
@@ -158,4 +289,9 @@ for test_name in "${TESTS[@]}"; do
 done
 
 echo ""
-printf "${GREEN}All $PASS tests passed${NC}\n"
+if [ "$FAIL" -eq 0 ]; then
+    printf "${GREEN}All $PASS tests passed${NC}\n"
+else
+    report_summary
+    exit 1
+fi
