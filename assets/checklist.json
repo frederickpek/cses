@@ -153,5 +153,10 @@
     "task_id": 1636,
     "task_name": "Coin Combinations II",
     "date_solved": "2026-08-24T18:59:00Z"
+  },
+  {
+    "task_id": 1637,
+    "task_name": "Removing Digits",
+    "date_solved": "2026-08-24T19:13:49Z"
   }
 ]
