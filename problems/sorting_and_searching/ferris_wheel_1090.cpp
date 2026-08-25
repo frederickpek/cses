@@ -5,8 +5,8 @@ using namespace std;
 
 
 void solve() {
-	int n, x;
-	cin >> n >> x;
+    int n, x;
+    cin >> n >> x;
     vector<int> P(n);
     rep(i, n) cin >> P[i];
     sort(P.begin(), P.end());
@@ -25,8 +25,8 @@ void solve() {
 
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
 
     int t = 1;
     // cin >> t;

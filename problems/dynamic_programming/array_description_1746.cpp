@@ -22,8 +22,8 @@ int dp[N][M], X[N];
 */
 
 void solve() {
-	int n, m;
-	cin >> n >> m;
+    int n, m;
+    cin >> n >> m;
     rep(i, n) cin >> X[i + 1];
 
     rep(i, n + 1) rep(j, m + 1) {
@@ -53,7 +53,7 @@ void solve() {
 
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
     solve();
 }

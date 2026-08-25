@@ -17,8 +17,8 @@ int A[N], B[N], dp[N][N];
 */
 
 void solve() {
-	int n, m;
-	cin >> n >> m;
+    int n, m;
+    cin >> n >> m;
     rep(i, n) cin >> A[i + 1];
     rep(i, m) cin >> B[i + 1];
 
@@ -51,8 +51,8 @@ void solve() {
 
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
 
     int t = 1;
     // cin >> t;

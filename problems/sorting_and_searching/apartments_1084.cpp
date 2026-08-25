@@ -5,8 +5,8 @@ using namespace std;
 
 
 void solve() {
-	int n, m, k;
-	cin >> n >> m >> k;
+    int n, m, k;
+    cin >> n >> m >> k;
     vector<int> A(n), B(m);
     rep(i, n) cin >> A[i];
     rep(i, m) cin >> B[i];
@@ -29,7 +29,7 @@ void solve() {
 
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
     solve();
 }

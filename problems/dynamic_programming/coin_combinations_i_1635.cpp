@@ -6,10 +6,10 @@ using namespace std;
 const int MOD = 1e9 + 7;
 
 void solve() {
-	int n, T;
-	cin >> n >> T;
-	vector<int> C(n);
-	rep(i, n) cin >> C[i];
+    int n, T;
+    cin >> n >> T;
+    vector<int> C(n);
+    rep(i, n) cin >> C[i];
 
     vector<int> dp(T + 1);
     dp[0] = 1;
@@ -24,7 +24,7 @@ void solve() {
 
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
     solve();
 }

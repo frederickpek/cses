@@ -16,8 +16,8 @@ bool dp[N][N];
 */
 
 void solve() {
-	int n;
-	cin >> n;
+    int n;
+    cin >> n;
     vector<string> G(n);
     for (auto &row : G) cin >> row;
     
@@ -45,7 +45,7 @@ void solve() {
 
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
     solve();
 }

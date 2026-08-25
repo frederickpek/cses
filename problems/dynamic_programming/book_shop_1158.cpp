@@ -31,8 +31,8 @@ int H[N], S[N];
 */
 
 void solve() {
-	int n, x;
-	cin >> n >> x;
+    int n, x;
+    cin >> n >> x;
     rep(i, n) cin >> H[i + 1];
     rep(i, n) cin >> S[i + 1];
 
@@ -48,8 +48,8 @@ void solve() {
 
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
 
     int t = 1;
     // cin >> t;

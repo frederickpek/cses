@@ -7,8 +7,8 @@ int dp[N][N];
 char G[N][N];
 
 void solve() {
-	int n;
-	cin >> n;
+    int n;
+    cin >> n;
     rep(i, n) rep(j, n) cin >> G[i][j];
     if (G[0][0] == '.') dp[0][0] = 1;
     rep(i, n) rep(j, n) {
@@ -21,7 +21,7 @@ void solve() {
 }
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
     solve();
 }
