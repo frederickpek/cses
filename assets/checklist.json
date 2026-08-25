@@ -183,5 +183,10 @@
     "task_id": 3359,
     "task_name": "Minimal Grid Path",
     "date_solved": "2026-08-25T09:08:04Z"
+  },
+  {
+    "task_id": 1745,
+    "task_name": "Money Sums",
+    "date_solved": "2026-08-25T09:41:00Z"
   }
 ]

@@ -30,10 +30,10 @@
   <text x="236.66666666666666" y="258" text-anchor="middle">08-23</text>
   <text x="403.3333333333333" y="258" text-anchor="middle">08-24</text>
   <text x="570.0" y="258" text-anchor="middle">08-25</text>
-  <polygon points="70.0,240 70.0,215.0 236.66666666666666,150.0 403.3333333333333,95.0 570.0,55.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
-  <path d="M70.0,215.0 L236.66666666666666,150.0 L403.3333333333333,95.0 L570.0,55.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
+  <polygon points="70.0,240 70.0,215.0 236.66666666666666,150.0 403.3333333333333,95.0 570.0,50.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
+  <path d="M70.0,215.0 L236.66666666666666,150.0 L403.3333333333333,95.0 L570.0,50.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
   <circle cx="70.0" cy="215.0" r="3" fill="#4CAF50"/>
   <circle cx="236.66666666666666" cy="150.0" r="3" fill="#4CAF50"/>
   <circle cx="403.3333333333333" cy="95.0" r="3" fill="#4CAF50"/>
-  <circle cx="570.0" cy="55.0" r="3" fill="#4CAF50"/>
+  <circle cx="570.0" cy="50.0" r="3" fill="#4CAF50"/>
 </svg>
