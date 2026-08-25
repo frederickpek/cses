@@ -24,11 +24,11 @@
   <rect x="210" y="35" width="200" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="47">16 / 24</text>
 
-  <!-- Sorting and Searching: 2/35 -->
+  <!-- Sorting and Searching: 3/35 -->
   <text x="10" y="77">Sorting and Searching</text>
   <rect x="210" y="65" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="65" width="17" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="77">2 / 35</text>
+  <rect x="210" y="65" width="25" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="77">3 / 35</text>
 
   <!-- Dynamic Programming: 11/23 -->
   <text x="10" y="107">Dynamic Programming</text>
@@ -126,10 +126,10 @@
   <rect x="210" y="545" width="0" height="16" rx="4" fill="#4CAF50"/>
   <text class="count" x="570" y="557">0 / 30</text>
 
-  <!-- Total: 39/400 -->
+  <!-- Total: 40/400 -->
   <line x1="10" y1="575" x2="570" y2="575" stroke-width="1"/>
   <text x="10" y="597" font-weight="bold">Total</text>
   <rect x="210" y="585" width="300" height="16" rx="4" fill="#e0e0e0"/>
-  <rect x="210" y="585" width="29" height="16" rx="4" fill="#4CAF50"/>
-  <text class="count" x="570" y="597" font-weight="bold">39 / 400</text>
+  <rect x="210" y="585" width="30" height="16" rx="4" fill="#4CAF50"/>
+  <text class="count" x="570" y="597" font-weight="bold">40 / 400</text>
 </svg>

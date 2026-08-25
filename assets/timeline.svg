@@ -31,11 +31,11 @@
   <text x="320.0" y="258" text-anchor="middle">08-24</text>
   <text x="445.0" y="258" text-anchor="middle">08-25</text>
   <text x="570.0" y="258" text-anchor="middle">08-26</text>
-  <polygon points="70.0,240 70.0,215.0 195.0,150.0 320.0,95.0 445.0,50.0 570.0,45.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
-  <path d="M70.0,215.0 L195.0,150.0 L320.0,95.0 L445.0,50.0 L570.0,45.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
+  <polygon points="70.0,240 70.0,215.0 195.0,150.0 320.0,95.0 445.0,50.0 570.0,40.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
+  <path d="M70.0,215.0 L195.0,150.0 L320.0,95.0 L445.0,50.0 L570.0,40.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
   <circle cx="70.0" cy="215.0" r="3" fill="#4CAF50"/>
   <circle cx="195.0" cy="150.0" r="3" fill="#4CAF50"/>
   <circle cx="320.0" cy="95.0" r="3" fill="#4CAF50"/>
   <circle cx="445.0" cy="50.0" r="3" fill="#4CAF50"/>
-  <circle cx="570.0" cy="45.0" r="3" fill="#4CAF50"/>
+  <circle cx="570.0" cy="40.0" r="3" fill="#4CAF50"/>
 </svg>
