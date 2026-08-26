@@ -228,5 +228,15 @@
     "task_id": 1074,
     "task_name": "Stick Lengths",
     "date_solved": "2026-08-26T12:35:03Z"
+  },
+  {
+    "task_id": 2183,
+    "task_name": "Missing Coin Sum",
+    "date_solved": "2026-08-26T16:23:52Z"
+  },
+  {
+    "task_id": 2216,
+    "task_name": "Collecting Numbers",
+    "date_solved": "2026-08-26T16:23:52Z"
   }
 ]
