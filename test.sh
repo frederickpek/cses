@@ -346,15 +346,15 @@ run_test() {
             fi
             echo ""
             echo "Expected:"
-            echo "$expected" | head -20
-            lines=$(echo "$expected" | wc -l)
+            head -20 <<< "$expected"
+            lines=$(wc -l <<< "$expected")
             if [ "$lines" -gt 20 ]; then
                 echo "... ($lines lines total)"
             fi
             echo ""
             echo "Got:"
-            echo "$actual" | head -20
-            lines=$(echo "$actual" | wc -l)
+            head -20 <<< "$actual"
+            lines=$(wc -l <<< "$actual")
             if [ "$lines" -gt 20 ]; then
                 echo "... ($lines lines total)"
             fi
