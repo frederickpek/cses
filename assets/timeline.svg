@@ -32,12 +32,12 @@
   <text x="370.0" y="258" text-anchor="middle">08-25</text>
   <text x="470.0" y="258" text-anchor="middle">08-26</text>
   <text x="570.0" y="258" text-anchor="middle">08-27</text>
-  <polygon points="70.0,240 70.0,220.0 170.0,168.0 270.0,124.00000000000001 370.0,88.0 470.0,56.0 570.0,48.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
-  <path d="M70.0,220.0 L170.0,168.0 L270.0,124.00000000000001 L370.0,88.0 L470.0,56.0 L570.0,48.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
+  <polygon points="70.0,240 70.0,220.0 170.0,168.0 270.0,124.00000000000001 370.0,88.0 470.0,56.0 570.0,44.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
+  <path d="M70.0,220.0 L170.0,168.0 L270.0,124.00000000000001 L370.0,88.0 L470.0,56.0 L570.0,44.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
   <circle cx="70.0" cy="220.0" r="3" fill="#4CAF50"/>
   <circle cx="170.0" cy="168.0" r="3" fill="#4CAF50"/>
   <circle cx="270.0" cy="124.00000000000001" r="3" fill="#4CAF50"/>
   <circle cx="370.0" cy="88.0" r="3" fill="#4CAF50"/>
   <circle cx="470.0" cy="56.0" r="3" fill="#4CAF50"/>
-  <circle cx="570.0" cy="48.0" r="3" fill="#4CAF50"/>
+  <circle cx="570.0" cy="44.0" r="3" fill="#4CAF50"/>
 </svg>
