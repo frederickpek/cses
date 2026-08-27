@@ -24,7 +24,7 @@ REF_FILE="${PY_FILE:-$CPP_FILE}"
 REF_EXT="${REF_FILE##*.}"
 BASENAME=$(basename "$REF_FILE" ".$REF_EXT")
 NAME_PART="${BASENAME%_$TASK_ID}"
-TITLE=$(echo "$NAME_PART" | sed 's/_/ /g' | sed 's/\b\(.\)/\u\1/g' | sed 's/ Ii\+$/\U&/')
+TITLE=$(echo "$NAME_PART" | sed 's/_/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2); if($NF ~ /^Ii+$/) $NF=toupper($NF)}1')
 
 [ -n "$PY_FILE" ] && git add "$PY_FILE"
 [ -n "$CPP_FILE" ] && git add "$CPP_FILE"
