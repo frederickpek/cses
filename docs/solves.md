@@ -2,7 +2,7 @@
 
 Total problems: 400 | Solved: 51
 
-Last updated: 30 Aug 2026, 12:09:47 AM (SGT)
+Last updated: 30 Aug 2026, 12:10:50 AM (SGT)
 
 Sorted by number of solves (descending).
 
@@ -26,15 +26,15 @@ Sorted by number of solves (descending).
 | 16 | [Grid Paths I](https://cses.fi/problemset/task/1638) | Dynamic Programming | 64,549 | YES |
 | 17 | [Counting Rooms](https://cses.fi/problemset/task/1192) | Graph Algorithms | 64,143 | YES |
 | 18 | [Ferris Wheel](https://cses.fi/problemset/task/1090) | Sorting and Searching | 63,569 | YES |
-| 19 | [Coin Combinations II](https://cses.fi/problemset/task/1636) | Dynamic Programming | 61,854 | YES |
+| 19 | [Coin Combinations II](https://cses.fi/problemset/task/1636) | Dynamic Programming | 61,855 | YES |
 | 20 | [Coin Piles](https://cses.fi/problemset/task/1754) | Introductory Problems | 61,029 | YES |
 | 21 | [Two Knights](https://cses.fi/problemset/task/1072) | Introductory Problems | 59,895 | YES |
 | 22 | [Sum of Two Values](https://cses.fi/problemset/task/1640) | Sorting and Searching | 58,283 | YES |
 | 23 | [Book Shop](https://cses.fi/problemset/task/1158) | Dynamic Programming | 58,250 | YES |
 | 24 | [Palindrome Reorder](https://cses.fi/problemset/task/1755) | Introductory Problems | 56,721 | YES |
-| 25 | [Building Roads](https://cses.fi/problemset/task/1666) | Graph Algorithms | 56,164 | YES |
+| 25 | [Building Roads](https://cses.fi/problemset/task/1666) | Graph Algorithms | 56,165 | YES |
 | 26 | [Maximum Subarray Sum](https://cses.fi/problemset/task/1643) | Sorting and Searching | 55,637 | YES |
-| 27 | [Restaurant Customers](https://cses.fi/problemset/task/1619) | Sorting and Searching | 51,888 | YES |
+| 27 | [Restaurant Customers](https://cses.fi/problemset/task/1619) | Sorting and Searching | 51,889 | YES |
 | 28 | [Concert Tickets](https://cses.fi/problemset/task/1091) | Sorting and Searching | 50,982 | YES |
 | 29 | [Movie Festival](https://cses.fi/problemset/task/1629) | Sorting and Searching | 50,450 | YES |
 | 30 | [Stick Lengths](https://cses.fi/problemset/task/1074) | Sorting and Searching | 49,867 | YES |
@@ -50,7 +50,7 @@ Sorted by number of solves (descending).
 | 40 | [Shortest Routes I](https://cses.fi/problemset/task/1671) | Graph Algorithms | 40,226 | YES |
 | 41 | [Collecting Numbers](https://cses.fi/problemset/task/2216) | Sorting and Searching | 39,102 | YES |
 | 42 | [Playlist](https://cses.fi/problemset/task/1141) | Sorting and Searching | 39,030 | YES |
-| 43 | [Towers](https://cses.fi/problemset/task/1073) | Sorting and Searching | 38,997 |  |
+| 43 | [Towers](https://cses.fi/problemset/task/1073) | Sorting and Searching | 38,998 |  |
 | 44 | [Gray Code](https://cses.fi/problemset/task/2205) | Introductory Problems | 38,756 | YES |
 | 45 | [Missing Coin Sum](https://cses.fi/problemset/task/2183) | Sorting and Searching | 38,174 | YES |
 | 46 | [Subordinates](https://cses.fi/problemset/task/1674) | Tree Algorithms | 36,919 | YES |
@@ -66,7 +66,7 @@ Sorted by number of solves (descending).
 | 56 | [Subarray Sums II](https://cses.fi/problemset/task/1661) | Sorting and Searching | 31,535 |  |
 | 57 | [Sum of Three Values](https://cses.fi/problemset/task/1641) | Sorting and Searching | 31,134 |  |
 | 58 | [Static Range Minimum Queries](https://cses.fi/problemset/task/1647) | Range Queries | 30,848 |  |
-| 59 | [Traffic Lights](https://cses.fi/problemset/task/1163) | Sorting and Searching | 30,364 |  |
+| 59 | [Traffic Lights](https://cses.fi/problemset/task/1163) | Sorting and Searching | 30,365 |  |
 | 60 | [Tree Diameter](https://cses.fi/problemset/task/1131) | Tree Algorithms | 30,202 |  |
 | 61 | [Range Xor Queries](https://cses.fi/problemset/task/1650) | Range Queries | 29,599 |  |
 | 62 | [Chessboard and Queens](https://cses.fi/problemset/task/1624) | Introductory Problems | 29,555 |  |
@@ -219,8 +219,8 @@ Sorted by number of solves (descending).
 | 209 | [Counting Necklaces](https://cses.fi/problemset/task/2209) | Mathematics | 2,615 |  |
 | 210 | [New Roads Queries](https://cses.fi/problemset/task/2101) | Advanced Techniques | 2,613 |  |
 | 211 | [Reachable Nodes](https://cses.fi/problemset/task/2138) | Advanced Techniques | 2,601 |  |
-| 212 | [SOS Bit Problem](https://cses.fi/problemset/task/1654) | Bitwise Operations | 2,576 |  |
-| 213 | [Subarray Sum Queries II](https://cses.fi/problemset/task/3226) | Range Queries | 2,575 |  |
+| 212 | [Subarray Sum Queries II](https://cses.fi/problemset/task/3226) | Range Queries | 2,576 |  |
+| 213 | [SOS Bit Problem](https://cses.fi/problemset/task/1654) | Bitwise Operations | 2,576 |  |
 | 214 | [Bit Inversions](https://cses.fi/problemset/task/1188) | Additional Problems I | 2,558 |  |
 | 215 | [Corner Subgrid Count](https://cses.fi/problemset/task/2137) | Advanced Techniques | 2,495 |  |
 | 216 | [Palindrome Queries](https://cses.fi/problemset/task/2420) | String Algorithms | 2,460 |  |
