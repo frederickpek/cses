@@ -1,23 +1,23 @@
 # CSES Problem Set — Solve Counts
 
-Total problems: 400 | Solved: 51
+Total problems: 400 | Solved: 52
 
-Last updated: 30 Aug 2026, 12:10:50 AM (SGT)
+Last updated: 30 Aug 2026, 12:18:48 AM (SGT)
 
 Sorted by number of solves (descending).
 
 | # | Problem | Category | Solves | Solved |
 |--:|---------|----------|-------:|:------:|
-| 1 | [Weird Algorithm](https://cses.fi/problemset/task/1068) | Introductory Problems | 176,462 | YES |
+| 1 | [Weird Algorithm](https://cses.fi/problemset/task/1068) | Introductory Problems | 176,464 | YES |
 | 2 | [Missing Number](https://cses.fi/problemset/task/1083) | Introductory Problems | 152,228 | YES |
-| 3 | [Repetitions](https://cses.fi/problemset/task/1069) | Introductory Problems | 132,309 | YES |
+| 3 | [Repetitions](https://cses.fi/problemset/task/1069) | Introductory Problems | 132,310 | YES |
 | 4 | [Increasing Array](https://cses.fi/problemset/task/1094) | Introductory Problems | 124,722 | YES |
 | 5 | [Permutations](https://cses.fi/problemset/task/1070) | Introductory Problems | 109,284 | YES |
-| 6 | [Dice Combinations](https://cses.fi/problemset/task/1633) | Dynamic Programming | 92,174 | YES |
+| 6 | [Dice Combinations](https://cses.fi/problemset/task/1633) | Dynamic Programming | 92,175 | YES |
 | 7 | [Distinct Numbers](https://cses.fi/problemset/task/1621) | Sorting and Searching | 87,746 | YES |
 | 8 | [Minimizing Coins](https://cses.fi/problemset/task/1634) | Dynamic Programming | 79,795 | YES |
 | 9 | [Number Spiral](https://cses.fi/problemset/task/1071) | Introductory Problems | 77,652 | YES |
-| 10 | [Bit Strings](https://cses.fi/problemset/task/1617) | Introductory Problems | 74,076 | YES |
+| 10 | [Bit Strings](https://cses.fi/problemset/task/1617) | Introductory Problems | 74,077 | YES |
 | 11 | [Coin Combinations I](https://cses.fi/problemset/task/1635) | Dynamic Programming | 72,936 | YES |
 | 12 | [Removing Digits](https://cses.fi/problemset/task/1637) | Dynamic Programming | 68,732 | YES |
 | 13 | [Trailing Zeros](https://cses.fi/problemset/task/1618) | Introductory Problems | 68,601 | YES |
@@ -30,11 +30,11 @@ Sorted by number of solves (descending).
 | 20 | [Coin Piles](https://cses.fi/problemset/task/1754) | Introductory Problems | 61,029 | YES |
 | 21 | [Two Knights](https://cses.fi/problemset/task/1072) | Introductory Problems | 59,895 | YES |
 | 22 | [Sum of Two Values](https://cses.fi/problemset/task/1640) | Sorting and Searching | 58,283 | YES |
-| 23 | [Book Shop](https://cses.fi/problemset/task/1158) | Dynamic Programming | 58,250 | YES |
+| 23 | [Book Shop](https://cses.fi/problemset/task/1158) | Dynamic Programming | 58,251 | YES |
 | 24 | [Palindrome Reorder](https://cses.fi/problemset/task/1755) | Introductory Problems | 56,721 | YES |
-| 25 | [Building Roads](https://cses.fi/problemset/task/1666) | Graph Algorithms | 56,165 | YES |
+| 25 | [Building Roads](https://cses.fi/problemset/task/1666) | Graph Algorithms | 56,166 | YES |
 | 26 | [Maximum Subarray Sum](https://cses.fi/problemset/task/1643) | Sorting and Searching | 55,637 | YES |
-| 27 | [Restaurant Customers](https://cses.fi/problemset/task/1619) | Sorting and Searching | 51,889 | YES |
+| 27 | [Restaurant Customers](https://cses.fi/problemset/task/1619) | Sorting and Searching | 51,890 | YES |
 | 28 | [Concert Tickets](https://cses.fi/problemset/task/1091) | Sorting and Searching | 50,982 | YES |
 | 29 | [Movie Festival](https://cses.fi/problemset/task/1629) | Sorting and Searching | 50,450 | YES |
 | 30 | [Stick Lengths](https://cses.fi/problemset/task/1074) | Sorting and Searching | 49,867 | YES |
@@ -43,12 +43,12 @@ Sorted by number of solves (descending).
 | 33 | [Creating Strings](https://cses.fi/problemset/task/1622) | Introductory Problems | 47,854 | YES |
 | 34 | [Building Teams](https://cses.fi/problemset/task/1668) | Graph Algorithms | 45,990 | YES |
 | 35 | [Labyrinth](https://cses.fi/problemset/task/1193) | Graph Algorithms | 45,593 | YES |
-| 36 | [Static Range Sum Queries](https://cses.fi/problemset/task/1646) | Range Queries | 44,870 |  |
+| 36 | [Static Range Sum Queries](https://cses.fi/problemset/task/1646) | Range Queries | 44,871 | YES |
 | 37 | [Array Description](https://cses.fi/problemset/task/1746) | Dynamic Programming | 43,181 | YES |
 | 38 | [Edit Distance](https://cses.fi/problemset/task/1639) | Dynamic Programming | 42,981 |  |
 | 39 | [Money Sums](https://cses.fi/problemset/task/1745) | Dynamic Programming | 41,850 | YES |
 | 40 | [Shortest Routes I](https://cses.fi/problemset/task/1671) | Graph Algorithms | 40,226 | YES |
-| 41 | [Collecting Numbers](https://cses.fi/problemset/task/2216) | Sorting and Searching | 39,102 | YES |
+| 41 | [Collecting Numbers](https://cses.fi/problemset/task/2216) | Sorting and Searching | 39,104 | YES |
 | 42 | [Playlist](https://cses.fi/problemset/task/1141) | Sorting and Searching | 39,030 | YES |
 | 43 | [Towers](https://cses.fi/problemset/task/1073) | Sorting and Searching | 38,998 |  |
 | 44 | [Gray Code](https://cses.fi/problemset/task/2205) | Introductory Problems | 38,756 | YES |
@@ -67,8 +67,8 @@ Sorted by number of solves (descending).
 | 57 | [Sum of Three Values](https://cses.fi/problemset/task/1641) | Sorting and Searching | 31,134 |  |
 | 58 | [Static Range Minimum Queries](https://cses.fi/problemset/task/1647) | Range Queries | 30,848 |  |
 | 59 | [Traffic Lights](https://cses.fi/problemset/task/1163) | Sorting and Searching | 30,365 |  |
-| 60 | [Tree Diameter](https://cses.fi/problemset/task/1131) | Tree Algorithms | 30,202 |  |
-| 61 | [Range Xor Queries](https://cses.fi/problemset/task/1650) | Range Queries | 29,599 |  |
+| 60 | [Tree Diameter](https://cses.fi/problemset/task/1131) | Tree Algorithms | 30,203 |  |
+| 61 | [Range Xor Queries](https://cses.fi/problemset/task/1650) | Range Queries | 29,600 |  |
 | 62 | [Chessboard and Queens](https://cses.fi/problemset/task/1624) | Introductory Problems | 29,555 |  |
 | 63 | [Dynamic Range Minimum Queries](https://cses.fi/problemset/task/1649) | Range Queries | 28,981 |  |
 | 64 | [Exponentiation](https://cses.fi/problemset/task/1095) | Mathematics | 28,570 |  |
@@ -77,13 +77,13 @@ Sorted by number of solves (descending).
 | 67 | [Course Schedule](https://cses.fi/problemset/task/1679) | Graph Algorithms | 26,997 |  |
 | 68 | [Counting Towers](https://cses.fi/problemset/task/2413) | Dynamic Programming | 26,905 |  |
 | 69 | [Flight Discount](https://cses.fi/problemset/task/1195) | Graph Algorithms | 26,753 |  |
-| 70 | [Tasks and Deadlines](https://cses.fi/problemset/task/1630) | Sorting and Searching | 26,645 |  |
+| 70 | [Tasks and Deadlines](https://cses.fi/problemset/task/1630) | Sorting and Searching | 26,646 |  |
 | 71 | [Counting Divisors](https://cses.fi/problemset/task/1713) | Mathematics | 26,264 |  |
 | 72 | [Nearest Smaller Values](https://cses.fi/problemset/task/1645) | Sorting and Searching | 26,065 |  |
 | 73 | [Removal Game](https://cses.fi/problemset/task/1097) | Dynamic Programming | 25,979 |  |
 | 74 | [Monsters](https://cses.fi/problemset/task/1194) | Graph Algorithms | 25,897 | YES |
 | 75 | [Forest Queries](https://cses.fi/problemset/task/1652) | Range Queries | 24,583 |  |
-| 76 | [Range Update Queries](https://cses.fi/problemset/task/1651) | Range Queries | 23,944 |  |
+| 76 | [Range Update Queries](https://cses.fi/problemset/task/1651) | Range Queries | 23,945 |  |
 | 77 | [Josephus Problem I](https://cses.fi/problemset/task/2162) | Sorting and Searching | 23,658 | YES |
 | 78 | [Projects](https://cses.fi/problemset/task/1140) | Dynamic Programming | 23,622 |  |
 | 79 | [Tree Distances I](https://cses.fi/problemset/task/1132) | Tree Algorithms | 23,454 |  |
@@ -136,7 +136,7 @@ Sorted by number of solves (descending).
 | 126 | [Sliding Window Cost](https://cses.fi/problemset/task/1077) | Sliding Window Problems | 9,968 |  |
 | 127 | [Coin Collector](https://cses.fi/problemset/task/1686) | Graph Algorithms | 9,844 |  |
 | 128 | [Distributing Apples](https://cses.fi/problemset/task/1716) | Mathematics | 9,724 |  |
-| 129 | [Sum of Divisors](https://cses.fi/problemset/task/1082) | Mathematics | 9,624 |  |
+| 129 | [Sum of Divisors](https://cses.fi/problemset/task/1082) | Mathematics | 9,625 |  |
 | 130 | [Nested Ranges Count](https://cses.fi/problemset/task/2169) | Sorting and Searching | 9,440 |  |
 | 131 | [Prefix Sum Queries](https://cses.fi/problemset/task/2166) | Range Queries | 9,383 |  |
 | 132 | [Hamiltonian Flights](https://cses.fi/problemset/task/1690) | Graph Algorithms | 9,284 |  |
@@ -186,7 +186,7 @@ Sorted by number of solves (descending).
 | 176 | [Advertisement](https://cses.fi/problemset/task/1142) | Additional Problems I | 4,903 |  |
 | 177 | [Police Chase](https://cses.fi/problemset/task/1695) | Graph Algorithms | 4,837 |  |
 | 178 | [Mountain Range](https://cses.fi/problemset/task/3314) | Dynamic Programming | 4,834 |  |
-| 179 | [Path Queries II](https://cses.fi/problemset/task/2134) | Tree Algorithms | 4,559 |  |
+| 179 | [Path Queries II](https://cses.fi/problemset/task/2134) | Tree Algorithms | 4,560 |  |
 | 180 | [Nim Game II](https://cses.fi/problemset/task/1098) | Mathematics | 4,389 |  |
 | 181 | [Throwing Dice](https://cses.fi/problemset/task/1096) | Mathematics | 4,248 |  |
 | 182 | [Fixed-Length Paths I](https://cses.fi/problemset/task/2080) | Tree Algorithms | 4,236 |  |
@@ -293,8 +293,8 @@ Sorted by number of solves (descending).
 | 283 | [One Bit Positions](https://cses.fi/problemset/task/2112) | Advanced Techniques | 991 |  |
 | 284 | [Counting Permutations](https://cses.fi/problemset/task/1075) | Counting Problems | 982 |  |
 | 285 | [Signal Processing](https://cses.fi/problemset/task/2113) | Advanced Techniques | 975 |  |
-| 286 | [Substring Order II](https://cses.fi/problemset/task/2109) | String Algorithms | 974 |  |
-| 287 | [Forbidden Cities](https://cses.fi/problemset/task/1705) | Advanced Graph Problems | 974 |  |
+| 286 | [Forbidden Cities](https://cses.fi/problemset/task/1705) | Advanced Graph Problems | 975 |  |
+| 287 | [Substring Order II](https://cses.fi/problemset/task/2109) | String Algorithms | 974 |  |
 | 288 | [All Palindromes](https://cses.fi/problemset/task/3138) | String Algorithms | 963 |  |
 | 289 | [Parcel Delivery](https://cses.fi/problemset/task/2121) | Advanced Techniques | 948 |  |
 | 290 | [Nearest Shops](https://cses.fi/problemset/task/3303) | Advanced Graph Problems | 944 |  |
