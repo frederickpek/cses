@@ -15,31 +15,33 @@
   <line class="grid" x1="70" y1="240.0" x2="570" y2="240.0"/>
   <text x="62" y="244.0" text-anchor="end">0</text>
   <line class="grid" x1="70" y1="200.0" x2="570" y2="200.0"/>
-  <text x="62" y="204.0" text-anchor="end">10</text>
+  <text x="62" y="204.0" text-anchor="end">12</text>
   <line class="grid" x1="70" y1="160.0" x2="570" y2="160.0"/>
-  <text x="62" y="164.0" text-anchor="end">20</text>
+  <text x="62" y="164.0" text-anchor="end">24</text>
   <line class="grid" x1="70" y1="120.0" x2="570" y2="120.0"/>
-  <text x="62" y="124.0" text-anchor="end">30</text>
+  <text x="62" y="124.0" text-anchor="end">36</text>
   <line class="grid" x1="70" y1="80.0" x2="570" y2="80.0"/>
-  <text x="62" y="84.0" text-anchor="end">40</text>
+  <text x="62" y="84.0" text-anchor="end">48</text>
   <line class="grid" x1="70" y1="40.0" x2="570" y2="40.0"/>
-  <text x="62" y="44.0" text-anchor="end">50</text>
+  <text x="62" y="44.0" text-anchor="end">60</text>
   <line class="axis" x1="70" y1="40" x2="70" y2="240"/>
   <line class="axis" x1="70" y1="240" x2="570" y2="240"/>
   <text x="70.0" y="258" text-anchor="middle">08-22</text>
-  <text x="153.33333333333331" y="258" text-anchor="middle">08-23</text>
-  <text x="236.66666666666666" y="258" text-anchor="middle">08-24</text>
-  <text x="320.0" y="258" text-anchor="middle">08-25</text>
-  <text x="403.3333333333333" y="258" text-anchor="middle">08-26</text>
-  <text x="486.6666666666667" y="258" text-anchor="middle">08-27</text>
-  <text x="570.0" y="258" text-anchor="middle">08-28</text>
-  <polygon points="70.0,240 70.0,220.0 153.33333333333331,168.0 236.66666666666666,124.00000000000001 320.0,88.0 403.3333333333333,56.0 486.6666666666667,44.0 570.0,40.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
-  <path d="M70.0,220.0 L153.33333333333331,168.0 L236.66666666666666,124.00000000000001 L320.0,88.0 L403.3333333333333,56.0 L486.6666666666667,44.0 L570.0,40.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
-  <circle cx="70.0" cy="220.0" r="3" fill="#4CAF50"/>
-  <circle cx="153.33333333333331" cy="168.0" r="3" fill="#4CAF50"/>
-  <circle cx="236.66666666666666" cy="124.00000000000001" r="3" fill="#4CAF50"/>
-  <circle cx="320.0" cy="88.0" r="3" fill="#4CAF50"/>
-  <circle cx="403.3333333333333" cy="56.0" r="3" fill="#4CAF50"/>
-  <circle cx="486.6666666666667" cy="44.0" r="3" fill="#4CAF50"/>
-  <circle cx="570.0" cy="40.0" r="3" fill="#4CAF50"/>
+  <text x="141.42857142857144" y="258" text-anchor="middle">08-23</text>
+  <text x="212.85714285714286" y="258" text-anchor="middle">08-24</text>
+  <text x="284.2857142857143" y="258" text-anchor="middle">08-25</text>
+  <text x="355.7142857142857" y="258" text-anchor="middle">08-26</text>
+  <text x="427.14285714285717" y="258" text-anchor="middle">08-27</text>
+  <text x="498.57142857142856" y="258" text-anchor="middle">08-28</text>
+  <text x="570.0" y="258" text-anchor="middle">08-29</text>
+  <polygon points="70.0,240 70.0,223.33333333333334 141.42857142857144,180.0 212.85714285714286,143.33333333333331 284.2857142857143,113.33333333333334 355.7142857142857,86.66666666666666 427.14285714285717,76.66666666666666 498.57142857142856,73.33333333333331 570.0,70.0 570.0,240" fill="#4CAF50" opacity="0.15"/>
+  <path d="M70.0,223.33333333333334 L141.42857142857144,180.0 L212.85714285714286,143.33333333333331 L284.2857142857143,113.33333333333334 L355.7142857142857,86.66666666666666 L427.14285714285717,76.66666666666666 L498.57142857142856,73.33333333333331 L570.0,70.0" fill="none" stroke="#4CAF50" stroke-width="2"/>
+  <circle cx="70.0" cy="223.33333333333334" r="3" fill="#4CAF50"/>
+  <circle cx="141.42857142857144" cy="180.0" r="3" fill="#4CAF50"/>
+  <circle cx="212.85714285714286" cy="143.33333333333331" r="3" fill="#4CAF50"/>
+  <circle cx="284.2857142857143" cy="113.33333333333334" r="3" fill="#4CAF50"/>
+  <circle cx="355.7142857142857" cy="86.66666666666666" r="3" fill="#4CAF50"/>
+  <circle cx="427.14285714285717" cy="76.66666666666666" r="3" fill="#4CAF50"/>
+  <circle cx="498.57142857142856" cy="73.33333333333331" r="3" fill="#4CAF50"/>
+  <circle cx="570.0" cy="70.0" r="3" fill="#4CAF50"/>
 </svg>
